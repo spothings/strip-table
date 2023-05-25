@@ -1,1 +1,2 @@
-_we have nothing in here, come back tomorrow_
+## referebce
+- [Potentiometer](https://www.instructables.com/ESP8266-Using-PWM-With-Potentiometer/)

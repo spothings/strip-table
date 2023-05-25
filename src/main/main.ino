@@ -6,8 +6,8 @@ void setup() {
 }
 
 void loop() {
-  int intensitas = Ldr(A0);\
-  
+  int intensitas = Ldr(A0);
+
   if(intensitas < 500){
     Relay(D0, true);
   } else {
