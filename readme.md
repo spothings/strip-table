@@ -11,6 +11,10 @@ The project aims to develop a sophisticated controller capable of efficiently ma
 
 ![strip_table_view](https://raw.githubusercontent.com/spothings/strip-table/dev/img/strip_table_view.jpg?token=GHSAT0AAAAAACA4XFCHEAU7CGJOGLGLDWOCZDQJMRA)
 
+## Feature
+- Turn on and off lamp with relay
+- Using LDF to get light value
+
 ## Contributor
 [![Contributors](https://contributors-img.web.app/image?repo=spothings/strip-table)](https://github.com/spothings/strip-table/graphs/contributors)
 
