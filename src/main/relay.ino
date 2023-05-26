@@ -6,12 +6,12 @@ void Relay(int _pin, bool _status){
   }
 }
 
-void RelayStatus(bool _value, int _delay){
-  if(relay_wait < 10 * _delay){
+void RelayStatus(int _pin, bool _value, int _delay) {
+  if (relay_wait < _delay * 10) {
     relay_wait++;
   } else {
     relay_status = _value;
-    Relay(pin_relay, !_value);
+    Relay(_pin, !_value);
     relay_wait = 0;
   }
 }
