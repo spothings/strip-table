@@ -2,9 +2,7 @@ int pin_ldr = A0;
 int pin_relay = 16;
 
 int relay_wait = 0;
-bool relay_status = false;
-
-bool gelap = false;
+bool relay_status = false, gelap = false;
 
 void setup() {
   Serial.begin(115200);
@@ -23,21 +21,9 @@ void loop() {
   }
 
   if(gelap){
-    if(relay_wait < 10 * 1000){
-      relay_wait++;
-    } else {
-      relay_status = true;
-      Relay(pin_relay, false);
-      relay_wait = 0;
-    }
+    RelayStatus(true);
   } else {
-    if(relay_wait < 10 * 1000){
-      relay_wait++;
-    } else {
-      relay_status = false;
-      Relay(pin_relay, true);
-      relay_wait = 0;
-    }
+    RelayStatus(false);
   }
 
   Leds(LED_BUILTIN, intensitas);
