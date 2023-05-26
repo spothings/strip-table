@@ -1,1 +1,1 @@
-_we have nothing in here, come back tomorrow_
+![strip_table_view](https://raw.githubusercontent.com/spothings/strip-table/dev/img/strip_table_view.jpg?token=GHSAT0AAAAAACA4XFCG5AEGW4VK2F5P75XCZDQJHIQ)
