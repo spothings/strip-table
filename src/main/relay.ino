@@ -6,8 +6,8 @@ void Relay(int _pin, bool _status){
   }
 }
 
-void RelayStatus(bool _value){
-  if(relay_wait < 10 * 1000){
+void RelayStatus(bool _value, int _delay){
+  if(relay_wait < 10 * _delay){
     relay_wait++;
   } else {
     relay_status = _value;
