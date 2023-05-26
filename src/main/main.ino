@@ -38,5 +38,5 @@ void loop() {
   }
 
   Leds(pin_led, intensitas);
-  SerialMonitor(intensitas, relay_wait, maxldr, minldr);
+  SerialMonitor(intensitas, relay_wait, maxldr, minldr, nilaimalam);
 }

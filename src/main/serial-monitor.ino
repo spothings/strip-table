@@ -1,4 +1,4 @@
-void SerialMonitor(int _potencia, int _waiting, int _maxldr, int _minldr){
+void SerialMonitor(int _potencia, int _waiting, int _maxldr, int _minldr, int _nilaimalam){
   Serial.print(_potencia);
   Serial.print("\t");
   Serial.print(_waiting/10);
@@ -6,5 +6,7 @@ void SerialMonitor(int _potencia, int _waiting, int _maxldr, int _minldr){
   Serial.print(_maxldr);
   Serial.print("\t");
   Serial.print(_minldr);
+  Serial.print("\t");
+  Serial.print(_nilaimalam);
   Serial.print("\n");
 }
