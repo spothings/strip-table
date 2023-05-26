@@ -1,1 +1,2 @@
-_we have nothing in here, come back tomorrow_
+## reference
+- [Potentiometer](https://www.instructables.com/ESP8266-Using-PWM-With-Potentiometer/) : basic code to get ldf value.
