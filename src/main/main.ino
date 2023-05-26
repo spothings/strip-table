@@ -6,7 +6,9 @@ int pin_ldr = A0,
     pin_led = LED_BUILTIN;
 
 int relay_wait = 0,
-    relay_delay = 10;
+    relay_delay = 10,
+    maxldr = 0,
+    minldr = 1024;
 bool relay_status = false,
      malam = false;
 
@@ -21,8 +23,9 @@ void setup() {
 
 void loop() {
   int intensitas = LdrAverage(A0);
+  int nilaimalam = IntensitasAverage(intensitas, maxldr, minldr);
 
-  if (intensitas < 1024) {
+  if (intensitas < nilaimalam) {
     malam = true;
   } else {
     malam = false;
@@ -35,5 +38,5 @@ void loop() {
   }
 
   Leds(pin_led, intensitas);
-  SerialMonitor(intensitas, relay_wait);
+  SerialMonitor(intensitas, relay_wait, maxldr, minldr);
 }
