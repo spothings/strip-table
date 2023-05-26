@@ -1,7 +1,7 @@
-void Relay(int _pin, int _value){
-  if(_value < 1024){
-    digitalWrite(pin_relay, LOW);
-  } else {
+void Relay(int _pin, bool _status){
+  if(_status){
     digitalWrite(pin_relay, HIGH);
+  } else {
+    digitalWrite(pin_relay, LOW);
   }
 }
