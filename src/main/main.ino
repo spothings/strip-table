@@ -1,16 +1,20 @@
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 
-int pin_ldr = A0,
-    pin_relay = 16,
-    pin_led = LED_BUILTIN;
+const int
+  pin_ldr = A0,
+  pin_relay = 16,
+  pin_led = LED_BUILTIN,
+  relay_delay = 60;
 
-int relay_wait = 0,
-    relay_delay = 10,
-    maxldr = 0,
-    minldr = 1024;
-bool relay_status = false,
-     malam = false;
+int
+  RELAYWAIT = 0,
+  MAXLDR = 0,
+  MINLDR = 1024;
+
+bool
+  RELAYSTATUS = false,
+  GELAP = false;
 
 void setup() {
   Serial.begin(115200);
@@ -18,25 +22,27 @@ void setup() {
   pinMode(pin_relay, OUTPUT);
   pinMode(pin_led, OUTPUT);
 
+  Relay(pin_relay, false);
   WifiSetup();
 }
 
 void loop() {
-  int intensitas = LdrAverage(A0);
-  int nilaimalam = IntensitasAverage(intensitas, maxldr, minldr);
+  int intensitas = LdrAverage(pin_ldr);
+  int nilaigelap = IntensitasAverage(intensitas, MAXLDR, MINLDR);
 
-  if (intensitas < nilaimalam) {
-    malam = true;
+  if (intensitas < nilaigelap) {
+    if (GELAP == false){
+      RELAYWAIT = 0;
+      GELAP = true;
+    }
   } else {
-    malam = false;
+    if (GELAP == true){
+      RELAYWAIT = 0;
+      GELAP = false;
+    }
   }
 
-  if (malam) {
-    RelayStatus(pin_relay, true, relay_delay);
-  } else {
-    RelayStatus(pin_relay, false, relay_delay);
-  }
-
-  Leds(pin_led, intensitas);
-  SerialMonitor(intensitas, relay_wait, maxldr, minldr, nilaimalam);
+  Leds(pin_led, GELAP);
+  RelayStatus(pin_relay, RELAYSTATUS, GELAP, relay_delay);
+  SerialMonitor(intensitas, RELAYWAIT, MAXLDR, MINLDR, nilaigelap, GELAP);
 }
