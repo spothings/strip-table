@@ -25,6 +25,9 @@ void setup() {
 
   // Relay(pin_relay, false);  // by default turn off relay
   WifiSetup();
+
+  //Setup time ntp
+  setupNTP();
 }
 
 void loop() {
@@ -54,7 +57,12 @@ void loop() {
 
   // CODE FOR NTP CLIENT
   // amen peteng, set variabel -> MALAM = true | amen tengai, set variablel -> MALAM = false
-
+  int ntpTime = getTimeNTP();
+  if(ntpTime > 18 and ntpTime < 7){
+    MALAM = true;
+  }else{
+    MALAM = false;
+  }
 
   // turn on built in led by light status
   Leds(pin_led, GELAP);
