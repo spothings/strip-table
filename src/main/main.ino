@@ -5,7 +5,7 @@ const int
   pin_ldr = A0,           // pin LDR
   pin_relay = 16,         // pin relay
   pin_led = LED_BUILTIN,  // pin LED
-  relay_delay = 600;      // relay delay to turn on or off relay, 600 = 60 second or 1 minute
+  relay_delay = 600;       // relay delay to turn on or off relay, 600 = 60 second or 1 minute
 
 int
   RELAYWAIT = 0,  // increment value to wait condision
@@ -40,11 +40,15 @@ void loop() {
     // set value for lightLimit with auto sampling
     int lightLimit = IntensityAverage(intensity, MAXLDR, MINLDR);
 
+    // get bright value
+    bool bright = Bright();
+
+
     // turn on built in led by light status
-    Leds(pin_led, !RELAYSTATUS);
+    Leds(pin_led, bright);
 
     // turn on or off relay
-    RelayStatus(pin_relay, intensity, lightLimit, RELAYSTATUS, !RELAYSTATUS, relay_delay);
+    RelayStatus(pin_relay, intensity, lightLimit, RELAYSTATUS, bright, relay_delay);
 
     // print to serial monitor
     PrintMonitor(intensity, RELAYWAIT, MAXLDR, MINLDR, lightLimit, RELAYSTATUS);

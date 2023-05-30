@@ -1,18 +1,18 @@
 void Relay(int _pin, bool _status){
-  if(!_status){
-    digitalWrite(pin_relay, HIGH);
-  } else {
+  if(_status){
     digitalWrite(pin_relay, LOW);
+  } else {
+    digitalWrite(pin_relay, HIGH);
   }
 }
 
 void RelayStatus(int _pin, int _intensity, int _lightLimit, bool _relay, bool _bright, int _delay) {
-  if (_intensity < _lightLimit) {
-    if (!RELAYSTATUS) {
+  if (_intensity > _lightLimit) {
+    if (RELAYSTATUS) {
       RELAYWAIT = 0;
     }
   } else {
-    if (RELAYSTATUS) {
+    if (!RELAYSTATUS) {
       RELAYWAIT = 0;
     }
   }
