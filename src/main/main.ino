@@ -5,7 +5,7 @@ const int
   pin_ldr = A0,           // pin LDR
   pin_relay = 16,         // pin relay
   pin_led = LED_BUILTIN,  // pin LED
-  relay_delay = 600;      // relay delay to turn on or off relay
+  relay_delay = 600;      // relay delay to turn on or off relay, 600 = 60 second or 1 minute
 
 int
   RELAYWAIT = 0,  // increment value to wait condision
@@ -30,7 +30,7 @@ void setup() {
 
 void loop() {
   // get time (morning or night)
-  int night = GetTime();
+  bool night = GetTime();
 
   // LDR sensor set only works at night
   if (night) {
