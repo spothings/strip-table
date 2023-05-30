@@ -5,7 +5,7 @@ const int
   pin_ldr = A0,           // pin LDR
   pin_relay = 16,         // pin relay
   pin_led = LED_BUILTIN,  // pin LED
-  relay_delay = 600;       // relay delay to turn on or off relay, 600 = 60 second or 1 minute
+  relay_delay = 10;       // relay delay to turn on or off relay, 600 = 60 second or 1 minute
 
 int
   RELAYWAIT = 0,  // increment value to wait condision
@@ -26,6 +26,9 @@ void setup() {
 
   // setup time ntp
   setupNTP();
+
+  RELAYSTATUS = false;
+  Relay(pin_relay, false);
 }
 
 void loop() {
@@ -41,8 +44,7 @@ void loop() {
     int lightLimit = IntensityAverage(intensity, MAXLDR, MINLDR);
 
     // get bright value
-    bool bright = Bright();
-
+    bool bright = Bright(intensity, lightLimit);
 
     // turn on built in led by light status
     Leds(pin_led, bright);
