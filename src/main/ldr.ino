@@ -30,8 +30,8 @@ int MinLdr(int _new, int _old){
   }
 }
 
-int IntensitasAverage(int _intensitas, int _max, int _min){
-  int ldrmaxvalue = MaxLdr(_intensitas, _max);
-  int ldrminvalue = MinLdr(_intensitas, _min);
+int IntensityAverage(int _intensity, int _max, int _min){
+  int ldrmaxvalue = MaxLdr(_intensity, _max);
+  int ldrminvalue = MinLdr(_intensity, _min);
   return (ldrmaxvalue + ldrminvalue)/2;
 }

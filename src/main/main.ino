@@ -5,7 +5,7 @@ const int
   pin_ldr = A0,           // pin LDR
   pin_relay = 16,         // pin relay
   pin_led = LED_BUILTIN,  // pin LED
-  relay_delay = 60;       // relay delay to turn on or off relay
+  relay_delay = 600;      // relay delay to turn on or off relay
 
 int
   RELAYWAIT = 0,  // increment value to wait condision
@@ -13,9 +13,7 @@ int
   MINLDR = 1024;  // max value for LDR by default
 
 bool
-  RELAYSTATUS = true,  // relay status on or off
-  GELAP = true,        // light status (gelap or terang)
-  MALAM = true;
+  RELAYSTATUS;  // relay status (on or off)
 
 void setup() {
   Serial.begin(115200);
@@ -23,45 +21,37 @@ void setup() {
   pinMode(pin_relay, OUTPUT);
   pinMode(pin_led, OUTPUT);
 
-  // Relay(pin_relay, false);  // by default turn off relay
+  // setup Wifi
   WifiSetup();
+
+  // setup time ntp
+  setupNTP();
 }
 
 void loop() {
-  // get LDR value
-  int intensitas = LdrAverage(pin_ldr);
+  // get time (morning or night)
+  int night = GetTime();
 
-  // set max and min LDR value with average
-  int nilaigelap = IntensitasAverage(intensitas, MAXLDR, MINLDR);
+  // LDR sensor set only works at night
+  if (night) {
+    // get LDR value with average
+    int intensity = LdrAverage(pin_ldr);
 
-  // set light status (gelap or terang)
-  if (MALAM) {
-    if (intensitas < nilaigelap) {
-      if (GELAP == false) {
-        RELAYWAIT = 0;
-        GELAP = true;
-      }
-    } else {
-      if (GELAP == true) {
-        RELAYWAIT = 0;
-        GELAP = false;
-      }
-    }
-  } else {
-    GELAP = false;
-    RELAYSTATUS = false;
+    // set value for lightLimit with auto sampling
+    int lightLimit = IntensityAverage(intensity, MAXLDR, MINLDR);
+
+    // turn on built in led by light status
+    Leds(pin_led, !RELAYSTATUS);
+
+    // turn on or off relay
+    RelayStatus(pin_relay, intensity, lightLimit, RELAYSTATUS, !RELAYSTATUS, relay_delay);
+
+    // print to serial monitor
+    PrintMonitor(intensity, RELAYWAIT, MAXLDR, MINLDR, lightLimit, RELAYSTATUS);
   }
 
-  // CODE FOR NTP CLIENT
-  // amen peteng, set variabel -> MALAM = true | amen tengai, set variablel -> MALAM = false
-
-
-  // turn on built in led by light status
-  Leds(pin_led, GELAP);
-
-  // turn on or off relay
-  RelayStatus(pin_relay, RELAYSTATUS, GELAP, relay_delay);
-
-  // print to serial monitor
-  SerialMonitor(intensitas, RELAYWAIT, MAXLDR, MINLDR, nilaigelap, GELAP);
+  // if morning, it's time to rest 😴
+  else {
+    Relay(pin_relay, false);
+  }
 }
