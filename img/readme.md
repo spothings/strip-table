@@ -1,1 +1,0 @@
-![strip_table_view](https://raw.githubusercontent.com/spothings/strip-table/dev/img/strip_table_view.jpg?token=GHSAT0AAAAAACA4XFCHEAU7CGJOGLGLDWOCZDQJMRA)
