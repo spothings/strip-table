@@ -31,7 +31,11 @@ I have created a project solely for exploring the features of the NodeMCU microc
 - [PCB and Gerber File](/pcb)
 
 ## Contributor
-[![Contributors](https://contributors-img.web.app/image?repo=spothings/strip-table)](https://github.com/spothings/strip-table/graphs/contributors)
+<a href="https://github.com/spothings/strip-table/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=spothings/strip-table" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
 
 ## Donation
 If you think this project is helpful, you can make a donation. For those of you who want to make a donation, we would really appreciate it. Donations can be made through [Buy Me a Coffee](https://www.buymeacoffee.com/bukanspot) and [PayPal](https://paypal.me/bukanspot).
