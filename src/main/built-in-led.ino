@@ -1,4 +1,4 @@
-void Leds(int _pin, int _value){
+void Leds(int _pin, bool _value){
   if(!_value){
     digitalWrite(_pin, HIGH);
   } else {

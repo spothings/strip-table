@@ -19,7 +19,19 @@ int getTimeNTP() {
 
 bool GetTime() {
   int ntpTime = getTimeNTP();
-  if (ntpTime > 18 and ntpTime < 7) {
+  if (ntpTime >= 0 && ntpTime < 7) {
+    return true;
+  } else if (ntpTime >= 7 && ntpTime < 18) {
+    return false;
+  } else if (ntpTime >= 18 && ntpTime <= 24) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+bool Bright(int _intensity, int _lightLimit) {
+  if (_intensity > _lightLimit) {
     return true;
   } else {
     return false;

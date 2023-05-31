@@ -5,7 +5,7 @@ const int
   pin_ldr = A0,           // pin LDR
   pin_relay = 16,         // pin relay
   pin_led = LED_BUILTIN,  // pin LED
-  relay_delay = 600;      // relay delay to turn on or off relay
+  relay_delay = 60;       // relay delay to turn on or off relay, in secon
 
 int
   RELAYWAIT = 0,  // increment value to wait condision
@@ -26,11 +26,14 @@ void setup() {
 
   // setup time ntp
   setupNTP();
+
+  RELAYSTATUS = false;
+  Relay(pin_relay, false);
 }
 
 void loop() {
   // get time (morning or night)
-  int night = GetTime();
+  bool night = GetTime();
 
   // LDR sensor set only works at night
   if (night) {
@@ -40,11 +43,14 @@ void loop() {
     // set value for lightLimit with auto sampling
     int lightLimit = IntensityAverage(intensity, MAXLDR, MINLDR);
 
+    // get bright value
+    bool bright = Bright(intensity, lightLimit);
+
     // turn on built in led by light status
-    Leds(pin_led, !RELAYSTATUS);
+    Leds(pin_led, bright);
 
     // turn on or off relay
-    RelayStatus(pin_relay, intensity, lightLimit, RELAYSTATUS, !RELAYSTATUS, relay_delay);
+    RelayStatus(pin_relay, intensity, lightLimit, RELAYSTATUS, bright, relay_delay);
 
     // print to serial monitor
     PrintMonitor(intensity, RELAYWAIT, MAXLDR, MINLDR, lightLimit, RELAYSTATUS);
