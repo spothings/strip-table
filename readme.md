@@ -36,4 +36,4 @@ I have created a project solely for exploring the features of the NodeMCU microc
 If you think this project is helpful, you can make a donation. For those of you who want to make a donation, we would really appreciate it. Donations can be made through [Buy Me a Coffee](https://www.buymeacoffee.com/bukanspot) and [PayPal](https://paypal.me/bukanspot).
 
 ## License
-This project is using [spothings template]([spothings/spothings (github.com)](https://github.com/spothings/spothings)). Copyright, Privacy Policy and License also sourced from there.
+This project is using [spothings template](https://github.com/spothings/spothings). Copyright, Privacy Policy and License also sourced from there.
