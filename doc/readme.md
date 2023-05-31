@@ -1,6 +1,6 @@
 ## Requetment
 ### Hardware
-| Component and Sensor Name | Image | Url |
+| Name | Image | Url |
 |--------| -------| ----|
 | NodeMCU ESP8266 | <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fjoy-it.net%2Ffiles%2Ffiles%2FProdukte%2FSBC-NodeMCU-ESP32%2FSBC-NodeMCU-ESP32-01.png" width="20%" /> | http://www.nodemcu.com/index_en.html |
 | Relay 1 Channel 5v | <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn-reichelt.de%2Fbilder%2Fweb%2Fxxl_ws%2FA300%2FKY-019.png&f=1&nofb=1&ipt=b196d3b1547f34c2e0ffed3746d0f691eaa8c0acf7aaf456cf8fe0f44c9796d8&ipo=images" width="20%" /> |
