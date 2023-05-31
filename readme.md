@@ -17,6 +17,8 @@ I have created a project solely for exploring the features of the NodeMCU microc
 - Turn on and off the lights using relay
 - Use NTP client to get value day or night
 - Using the LDR sensor to get the light intensity
+- Using average light intensity for reasons of stability of sensor readings
+- Make auto sampling dark value
 
 ### Dev
 - Using EEPROM to store data
