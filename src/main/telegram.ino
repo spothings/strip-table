@@ -65,6 +65,7 @@ void TelegramSetup() {
 void Telegram() {
   if (millis() > lastTimeBotRan + TDELAY) {
     Serial.println("read telegram message");
+    Leds(pin_led, false);
     int numNewMessages = bot.getUpdates(bot.last_message_received + 1);
 
     while (numNewMessages) {
@@ -74,4 +75,5 @@ void Telegram() {
     }
     lastTimeBotRan = millis();
   }
+  Leds(pin_led, true);
 }
