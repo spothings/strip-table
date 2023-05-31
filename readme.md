@@ -10,7 +10,7 @@ The project aims to develop a sophisticated controller capable of efficiently ma
 [![Development Status](https://img.shields.io/badge/status-development-red)](https://github.com/spothings/strip-table/tree/dev)
 ![GitHub last commit](https://img.shields.io/github/last-commit/spothings/strip-table)
 
-![strip-table-view](strip-table-view.jpg)
+![strip-table-view](../strip-table-view.jpg)
 
 ## Feature
 - Turn on and off lamp with relay
