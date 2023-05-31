@@ -1,0 +1,46 @@
+<mxfile host="app.diagrams.net" modified="2023-05-31T12:29:35.914Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.57" etag="sH5lZpPmcbuI2eviV0qd" version="21.3.6" type="device">
+  <diagram name="Page-1" id="qtdBskX85ttaHC62LSLy">
+    <mxGraphModel dx="1095" dy="788" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="vOM8OKsdxTkJchFtbWwN-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="vOM8OKsdxTkJchFtbWwN-8" target="vOM8OKsdxTkJchFtbWwN-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vOM8OKsdxTkJchFtbWwN-8" value="NodeMCU (ESP8266)" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;image=https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn-reichelt.de%2Fbilder%2Fweb%2Fxxl_ws%2FA300%2FDEBO_JT_ESP8266_01.png&amp;f=1&amp;nofb=1&amp;ipt=7db2daa70805bfaf9051a659c9f795a703a42ba0506b9bf50ebe9ba3f4f206ed&amp;ipo=images" vertex="1" parent="1">
+          <mxGeometry x="358" y="340" width="135" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="vOM8OKsdxTkJchFtbWwN-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="vOM8OKsdxTkJchFtbWwN-9" target="vOM8OKsdxTkJchFtbWwN-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vOM8OKsdxTkJchFtbWwN-9" value="LDR Sensor" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;image=https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwire.lk%2Fwp-content%2Fuploads%2F2021%2F07%2FLDR.png&amp;f=1&amp;nofb=1&amp;ipt=6ac5883ca65b18f85aaf1e30fb41dd4b9dd3f42b69ffe4c3a88abbec724bac6a&amp;ipo=images" vertex="1" parent="1">
+          <mxGeometry x="130" y="340" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="vOM8OKsdxTkJchFtbWwN-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="vOM8OKsdxTkJchFtbWwN-11" target="vOM8OKsdxTkJchFtbWwN-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vOM8OKsdxTkJchFtbWwN-11" value="Relay 1 channel 5v" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;image=https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn-reichelt.de%2Fbilder%2Fweb%2Fxxl_ws%2FA300%2FKY-019.png&amp;f=1&amp;nofb=1&amp;ipt=b196d3b1547f34c2e0ffed3746d0f691eaa8c0acf7aaf456cf8fe0f44c9796d8&amp;ipo=images" vertex="1" parent="1">
+          <mxGeometry x="620" y="344.94" width="110" height="90.12" as="geometry" />
+        </mxCell>
+        <mxCell id="vOM8OKsdxTkJchFtbWwN-13" value="Lamp" style="shape=image;verticalLabelPosition=top;verticalAlign=bottom;imageAspect=0;image=https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F5a%2Fa5%2F0f%2F5aa50fd522de3b341ef3d9ab86fb04db.png&amp;f=1&amp;nofb=1&amp;ipt=59d21a893f9107a73794be569144a9a6c0e6d0683580917087e4cb72b938626e&amp;ipo=images;spacingTop=1;labelBorderColor=none;labelBackgroundColor=none;labelPosition=center;align=center;" vertex="1" parent="1">
+          <mxGeometry x="646" y="160.60000000000002" width="58" height="101.21" as="geometry" />
+        </mxCell>
+        <mxCell id="vOM8OKsdxTkJchFtbWwN-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="vOM8OKsdxTkJchFtbWwN-15" target="vOM8OKsdxTkJchFtbWwN-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vOM8OKsdxTkJchFtbWwN-15" value="&lt;br&gt;NTP time" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="500" y="181.20999999999998" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="vOM8OKsdxTkJchFtbWwN-17" value="" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.wifi;pointerEvents=1;rotation=-40;" vertex="1" parent="1">
+          <mxGeometry x="320.00000000000006" y="300" width="44.86" height="31.72" as="geometry" />
+        </mxCell>
+        <mxCell id="vOM8OKsdxTkJchFtbWwN-18" value="WiFi Router" style="image;image=img/lib/clip_art/networking/Router_Icon_128x128.png;labelPosition=center;verticalLabelPosition=top;align=center;verticalAlign=bottom;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="170.6" y="160.60000000000002" width="59.4" height="59.4" as="geometry" />
+        </mxCell>
+        <mxCell id="vOM8OKsdxTkJchFtbWwN-20" value="" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.wifi;pointerEvents=1;rotation=-220;" vertex="1" parent="1">
+          <mxGeometry x="240" y="230.09" width="44.86" height="31.72" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
