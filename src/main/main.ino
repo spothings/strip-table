@@ -5,7 +5,7 @@ const int
   pin_ldr = A0,           // pin LDR
   pin_relay = 16,         // pin relay
   pin_led = LED_BUILTIN,  // pin LED
-  relay_delay = 10;       // relay delay to turn on or off relay, 600 = 60 second or 1 minute
+  relay_delay = 60;       // relay delay to turn on or off relay, in secon
 
 int
   RELAYWAIT = 0,  // increment value to wait condision
