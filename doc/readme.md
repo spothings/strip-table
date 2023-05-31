@@ -18,6 +18,7 @@
 - https://dl.espressif.com/dl/package_esp32_index.json
 
 ## Reference
-- [Get Started](https://randomnerdtutorials.com/getting-started-with-esp8266-wifi-transceiver-review/) : Getting Started with ESP8266 NodeMCU Development Board
-- [Digital Pin](https://randomnerdtutorials.com/esp8266-nodemcu-digital-inputs-outputs-arduino/) : ESP8266 NodeMCU Digital Inputs and Digital Outputs (Arduino IDE)\
-- [Potentiometer](https://www.instructables.com/ESP8266-Using-PWM-With-Potentiometer/) : Basic Code to Get LDR Value.
+- [Getting Started with ESP8266 NodeMCU Development Board| Random Nerd Tutorials](https://randomnerdtutorials.com/getting-started-with-esp8266-wifi-transceiver-review/)
+- [ESP8266 NodeMCU Digital Inputs and Digital Outputs (Arduino IDE) | Random Nerd Tutorials](https://randomnerdtutorials.com/esp8266-nodemcu-digital-inputs-outputs-arduino/)
+- [ESP8266 Using PWM With Potentiometer : 4 Steps - Instructables](https://www.instructables.com/ESP8266-Using-PWM-With-Potentiometer/)
+- [Telegram: Control ESP32/ESP8266 Outputs with Arduino IDE | Random Nerd Tutorials](https://randomnerdtutorials.com/telegram-control-esp32-esp8266-nodemcu-outputs/)
