@@ -32,6 +32,7 @@ void handleNewMessages(int numNewMessages) {
     }
 
     if (text == "/sleep") {
+      Leds(pin_led, false);
       Relay(pin_relay, false);
       SLEEP = true;
       TDELAY = 0;
@@ -43,6 +44,7 @@ void handleNewMessages(int numNewMessages) {
     }
 
     if (text == "/wakeup") {
+      Leds(pin_led, true);
       Relay(pin_relay, true);
       SLEEP = false;
       TDELAY = 10000;

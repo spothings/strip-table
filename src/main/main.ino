@@ -38,15 +38,13 @@ void setup() {
   // setup telegram bot
   TelegramSetup();
 
+  Leds(pin_led, true);
   Relay(pin_relay, false);
   RELAYSTATUS = false;
   SLEEP = false;
 }
 
 void loop() {
-  // turn on built in led by sleep or not status
-  Leds(pin_led, SLEEP);
-
   if (!SLEEP) {
     // get time (morning or night)
     bool night = GetTime();
