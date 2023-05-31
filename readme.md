@@ -5,21 +5,35 @@
 ---
 
 ## About Project
-The project aims to develop a sophisticated controller capable of efficiently managing the control of lamps using an integrated system comprising an LDF sensor, PIR sensor, real-time clock, and a Telegram bot. By combining these elements, the controller will be able to autonomously detect ambient light levels through the LDF sensor, trigger the lamps based on movement sensed by the PIR sensor, schedule lighting operations using the real-time clock, and provide remote control and monitoring capabilities through the Telegram bot. This comprehensive solution will enhance energy efficiency, convenience, and security by seamlessly adapting to changing lighting requirements and allowing users to effortlessly interact with the system via the Telegram platform.
+I have created a project solely for exploring the features of the NodeMCU microcontroller (ESP8266) and fulfilling my desire to create an automatic backlight for my desk that adjusts according to day and night time using an LDR sensor. Several variables are stored in the ESP8266 EEPROM to prevent data loss upon restart. Additionally, I have incorporated a Telegram bot as an alternative method for remote control. I may consider adding more features in the future.
 
-[![Development Status](https://img.shields.io/badge/status-in%20development-red)](https://github.com/spothings/strip-table/tree/dev)
+[![Development Status](https://img.shields.io/badge/status-development-red)](https://github.com/spothings/strip-table/tree/dev)
 ![GitHub last commit](https://img.shields.io/github/last-commit/spothings/strip-table)
 
-![strip_table_view](https://raw.githubusercontent.com/spothings/strip-table/dev/img/strip_table_view.jpg?token=GHSAT0AAAAAACA4XFCHEAU7CGJOGLGLDWOCZDQJMRA)
+![strip-table-view](img/strip-table-view.jpg)
 
 ## Feature
-- Turn on and off lamp with relay
-- Using LDF to get light value
+### Current
+- Turn on and off the lights using relay
+- Use NTP client to get value day or night
+- Using the LDR sensor to get the light intensity
+
+### Dev
+- Using EEPROM to store data
+- Using Telegram bot for remote control
+
+## Development
+- [Documentation](/doc)
+- [Project Workflow](/flow)
+- [Source Code](/sch/main)
+- [Board Schematic](/sch)
+- [PCB and Gerber File](/pcb)
 
 ## Contributor
 [![Contributors](https://contributors-img.web.app/image?repo=spothings/strip-table)](https://github.com/spothings/strip-table/graphs/contributors)
 
 ## Donation
-For those of you who want to make a donation, we would really appreciate it. 
+If you think this project is helpful, you can make a donation. For those of you who want to make a donation, we would really appreciate it. Donations can be made through [Buy Me a Coffee](https://www.buymeacoffee.com/bukanspot) and [PayPal](https://paypal.me/bukanspot).
 
-Donations can be made through [Buy Me a Coffee](https://www.buymeacoffee.com/bukanspot) and [PayPal](https://paypal.me/bukanspot).
+## License
+This project is using [spothings template](https://github.com/spothings/spothings). Copyright, Privacy Policy and License also sourced from there.
