@@ -10,12 +10,12 @@
 ### Library
 - Arduino.h
 - ESP8266WiFi.h
-- [NTPClient.h]([arduino-libraries/NTPClient: Connect to a NTP server (github.com)](https://github.com/arduino-libraries/NTPClient))
+- [NTPClient.h](https://github.com/arduino-libraries/NTPClient)
 - WiFiUdp.h
 
-#### additional board manager
-http://arduino.esp8266.com/stable/package_esp8266com_index.json
-https://dl.espressif.com/dl/package_esp32_index.json
+#### Additional board manager
+- http://arduino.esp8266.com/stable/package_esp8266com_index.json
+- https://dl.espressif.com/dl/package_esp32_index.json
 
 ## Reference
 - [Get Started](https://randomnerdtutorials.com/getting-started-with-esp8266-wifi-transceiver-review/) : Getting Started with ESP8266 NodeMCU Development Board
