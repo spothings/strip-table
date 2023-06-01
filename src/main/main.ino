@@ -71,6 +71,7 @@ void loop() {
 
     // if morning, it's time to rest 😴
     else {
+      TDELAY = 0;
       Relay(pin_relay, false);
     }
   }
