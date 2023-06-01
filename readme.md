@@ -21,7 +21,7 @@ I have created a project solely for exploring the features of the NodeMCU microc
 	- [x] Make auto sampling dark value
 	- [x] Using Telegram bot for remote control
 -  [Development](https://github.com/spothings/strip-table/tree/dev-code)
-	- Using EEPROM to store data
+	- [ ] Using EEPROM to store data
 
 ## Development
 - [Documentation](/doc)
