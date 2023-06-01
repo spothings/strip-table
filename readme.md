@@ -5,7 +5,7 @@
 ---
 
 ## About Project
-I have created a project solely for exploring the features of the NodeMCU microcontroller (ESP8266) and fulfilling my desire to create an automatic backlight for my desk that adjusts according to day and night time using an LDR sensor. Several variables are stored in the ESP8266 EEPROM to prevent data loss upon restart. Additionally, I have incorporated a Telegram bot as an alternative method for remote control. I may consider adding more features in the future.
+I have created this project solely for exploring the features of the NodeMCU microcontroller (ESP8266) and fulfilling my desire to create an automatic backlight for my desk that adjusts according to day and night time using an LDR sensor. Several variables are stored in the ESP8266 EEPROM to prevent data loss upon restart. Additionally, I have incorporated a Telegram bot as an alternative method for remote control. I may consider adding more features in the future.
 
 [![Development Status](https://img.shields.io/badge/status-development-red)](https://github.com/spothings/strip-table/tree/dev)
 ![GitHub last commit](https://img.shields.io/github/last-commit/spothings/strip-table)
@@ -22,6 +22,7 @@ I have created a project solely for exploring the features of the NodeMCU microc
 -  [Development](https://github.com/spothings/strip-table/tree/dev-code)
 	- [x] Using Telegram bot for remote control
 	- [ ] Using EEPROM to store data
+	- [ ] Use pointer for function
 
 ## Contents
 - [Documentation](/doc)
