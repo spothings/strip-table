@@ -23,6 +23,7 @@ I have created this project solely for exploring the features of the NodeMCU mic
 	- [x] Using Telegram bot for remote control
 	- [ ] Using EEPROM to store data
 	- [ ] Use pointer for function
+	- [ ] Use Webserver
 
 ## Contents
 - [Documentation](/doc)
