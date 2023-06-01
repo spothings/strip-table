@@ -14,14 +14,14 @@ I have created a project solely for exploring the features of the NodeMCU microc
 
 ## Feature
 -  [Current](https://github.com/spothings/strip-table/releases)
-	- Turn on and off the lights using relay
-	- Use NTP client to get value day or night
-	- Using the LDR sensor to get the light intensity
-	- Using average light intensity for reasons of stability of sensor readings [`by default is off`](https://github.com/spothings/strip-table/pull/12)
-	- Make auto sampling dark value
-	- Using Telegram bot for remote control
+	- [x] Turn on and off the lights using relay
+	- [x] Use NTP client to get value day or night
+	- [x] Using the LDR sensor to get the light intensity
+	- [ ] Using average light intensity for reasons of stability of sensor readings [`by default is off`](https://github.com/spothings/strip-table/pull/12)
+	- [x] Make auto sampling dark value
+	- [x] Using Telegram bot for remote control
 -  [Development](https://github.com/spothings/strip-table/tree/dev-code)
-	- Using EEPROM to store data
+	- [ ] Using EEPROM to store data
 
 ## Development
 - [Documentation](/doc)
