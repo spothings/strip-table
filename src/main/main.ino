@@ -51,6 +51,8 @@ void loop() {
 
     // LDR sensor set only works at night
     if (night) {
+      TDELAY = 10000;
+      
       int
         // get LDR value with average
         intensity = LdrAverage(pin_ldr),
