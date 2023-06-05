@@ -1,8 +1,8 @@
 void Relay(int _pin, bool _status){
   if(_status){
-    digitalWrite(pin_relay, LOW);
+    digitalWrite(_pin, LOW);
   } else {
-    digitalWrite(pin_relay, HIGH);
+    digitalWrite(_pin, HIGH);
   }
 }
 
