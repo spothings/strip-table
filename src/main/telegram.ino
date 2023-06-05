@@ -8,7 +8,7 @@ X509List cert(TELEGRAM_CERTIFICATE_ROOT);
 unsigned long lastTimeBotRan;
 
 // Handle what happens when you receive new messages
-void handleNewMessages(int numNewMessages, int _led, int _relay, int* _tdelay, bool* _sleep) {
+void handleNewMessages(int numNewMessages, int _led, int _relay, int* _tdelay, bool* _sleep, int _addrmax, int _addrmin, int _maxldr, int _minldr, int* _medldr) {
   Serial.println("handleNewMessages");
   Serial.println(String(numNewMessages));
 
@@ -57,6 +57,15 @@ void handleNewMessages(int numNewMessages, int _led, int _relay, int* _tdelay, b
         bot.sendMessage(chat_id, "system is wakeup", "");
       }
     }
+
+    if (text == "/generate") {
+      Serial.println(_maxldr);
+      Serial.println(_minldr);
+      StorageWrite(_addrmax, _maxldr);
+      StorageWrite(_addrmin, _minldr);
+      *_medldr = MedianLDR(_addrmax, _addrmin);
+      bot.sendMessage(chat_id, "done generate", "");
+    }
   }
 }
 
@@ -65,7 +74,7 @@ void TelegramSetup() {
   client.setTrustAnchors(&cert);     // Add root certificate for api.telegram.org
 }
 
-void Telegram(int _led, int _relay, int* _tdelay, bool* _sleep) {
+void Telegram(int _led, int _relay, int* _tdelay, bool* _sleep, int _addrmax, int _addrmin, int _maxldr, int _minldr, int* _medldr) {
   if (millis() > lastTimeBotRan + *_tdelay) {
     Serial.println("read telegram message");
     Leds(_led, false);
@@ -73,7 +82,7 @@ void Telegram(int _led, int _relay, int* _tdelay, bool* _sleep) {
 
     while (numNewMessages) {
       Serial.println("got response");
-      handleNewMessages(numNewMessages, _led, _relay, _tdelay, _sleep);
+      handleNewMessages(numNewMessages, _led, _relay, _tdelay, _sleep, _addrmax, _addrmin, _maxldr, _minldr, _medldr);
       numNewMessages = bot.getUpdates(bot.last_message_received + 1);
     }
     lastTimeBotRan = millis();

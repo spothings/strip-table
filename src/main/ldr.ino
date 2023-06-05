@@ -12,26 +12,23 @@ int LdrAverage(int _pin){
   return potencia;
 }
 
-int MaxLdr(int _new, int* _max){
+void MaxLdr(int _new, int* _max){
   if (_new > *_max){
     *_max = _new;
-    return _new;
-  } else {
-    return *_max;
   }
 }
 
-int MinLdr(int _new, int* _min){
+void MinLdr(int _new, int* _min){
   if (_new < *_min){
     *_min = _new;
-    return _new;
-  } else {
-    return *_min;
   }
 }
 
-int IntensityAverage(int _intensity, int* _max, int* _min){
-  int ldrmaxvalue = MaxLdr(_intensity, _max);
-  int ldrminvalue = MinLdr(_intensity, _min);
-  return (ldrmaxvalue + ldrminvalue)/2;
+void GenerateLimit(int _intensity, int* _max, int* _min){
+  MaxLdr(_intensity, _max);
+  MinLdr(_intensity, _min);
+}
+
+int MedianLDR(int _max, int _min){
+  return (StorageRead(_max) + StorageRead(_min)) / 2;
 }
