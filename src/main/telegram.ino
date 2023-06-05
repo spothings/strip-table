@@ -1,6 +1,9 @@
 WiFiClientSecure client;
 UniversalTelegramBot bot(BOTtoken, client);
 
+// Add root certificate for api.telegram.org
+X509List cert(TELEGRAM_CERTIFICATE_ROOT);
+
 // Checks for new messages every 1 second.
 unsigned long lastTimeBotRan;
 
