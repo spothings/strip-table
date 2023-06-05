@@ -86,5 +86,5 @@ void loop() {
     }
   }
   // check message from telegram
-  Telegram();
+  Telegram(&tdelay, &sleep);
 }

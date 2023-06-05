@@ -8,7 +8,7 @@ X509List cert(TELEGRAM_CERTIFICATE_ROOT);
 unsigned long lastTimeBotRan;
 
 // Handle what happens when you receive new messages
-void handleNewMessages(int numNewMessages) {
+void handleNewMessages(int numNewMessages, int* _tdelay, bool* _sleep) {
   Serial.println("handleNewMessages");
   Serial.println(String(numNewMessages));
 
@@ -27,7 +27,7 @@ void handleNewMessages(int numNewMessages) {
     String from_name = bot.messages[i].from_name;
 
     if (text == "/status") {
-      if (*SLEEP) {
+      if (*_sleep) {
         bot.sendMessage(chat_id, "system is sleep", "");
       } else {
         bot.sendMessage(chat_id, "system is wakeup", "");
@@ -37,9 +37,9 @@ void handleNewMessages(int numNewMessages) {
     if (text == "/sleep") {
       Leds(pin_led, false);
       Relay(pin_relay, false);
-      *SLEEP = true;
-      *TDELAY = 0;
-      if (*SLEEP) {
+      *_sleep = true;
+      *_tdelay = 0;
+      if (*_sleep) {
         bot.sendMessage(chat_id, "system is sleep", "");
       } else {
         bot.sendMessage(chat_id, "system is wakeup", "");
@@ -49,9 +49,9 @@ void handleNewMessages(int numNewMessages) {
     if (text == "/wakeup") {
       Leds(pin_led, true);
       Relay(pin_relay, true);
-      *SLEEP = false;
-      *TDELAY = 10000;
-      if (*SLEEP) {
+      *_sleep = false;
+      *_tdelay = 10000;
+      if (*_sleep) {
         bot.sendMessage(chat_id, "system is sleep", "");
       } else {
         bot.sendMessage(chat_id, "system is wakeup", "");
@@ -65,15 +65,15 @@ void TelegramSetup() {
   client.setTrustAnchors(&cert);     // Add root certificate for api.telegram.org
 }
 
-void Telegram() {
-  if (millis() > lastTimeBotRan + *TDELAY) {
+void Telegram(int* _tdelay, bool* _sleep) {
+  if (millis() > lastTimeBotRan + *_tdelay) {
     Serial.println("read telegram message");
     Leds(pin_led, false);
     int numNewMessages = bot.getUpdates(bot.last_message_received + 1);
 
     while (numNewMessages) {
       Serial.println("got response");
-      handleNewMessages(numNewMessages);
+      handleNewMessages(numNewMessages, _tdelay, _sleep);
       numNewMessages = bot.getUpdates(bot.last_message_received + 1);
     }
     lastTimeBotRan = millis();
