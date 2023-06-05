@@ -20,7 +20,8 @@ int
 
 bool
   relay_status,  // relay status (on or off)
-  sleep;         // sensor read status (on or off)
+  night,
+  sleep;  // sensor read status (on or off)
 
 void setup() {
   //Init Serial USB
@@ -39,18 +40,25 @@ void setup() {
   Leds(pin_led, true);
   Relay(pin_relay, false);
   relay_status = false;
+  night = true;
   sleep = false;
 }
 
 void loop() {
   if (!sleep) {
     // get time (day or night)
-    bool night = true;  //GetTime();
+    if (night != GetTime()) {
+      if (night) {
+        tdelay = 10000;
+      } else {
+        tdelay = 0;
+        Relay(pin_relay, false);
+      }
+      night = GetTime();
+    }
 
     // LDR sensor set only works at night
     if (night) {
-      tdelay = 10000;
-
       int
         // get LDR value with average
         intensity = LdrAverage(pin_ldr),
@@ -68,12 +76,7 @@ void loop() {
       // print to serial monitor
       PrintMonitor(intensity, relay_wait, maxldr, minldr, lightLimit, relay_status);
     }
-
     // if day, it's time to rest 😴
-    else {
-      tdelay = 0;
-      Relay(pin_relay, false);
-    }
   }
   // check message from telegram
   Telegram(&tdelay, &sleep);
