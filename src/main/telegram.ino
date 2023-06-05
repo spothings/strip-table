@@ -38,7 +38,7 @@ void handleNewMessages(int numNewMessages) {
       Leds(pin_led, false);
       Relay(pin_relay, false);
       SLEEP = true;
-      TDELAY = 0;
+      *TDELAY = 0;
       if (SLEEP) {
         bot.sendMessage(chat_id, "system is sleep", "");
       } else {
@@ -50,7 +50,7 @@ void handleNewMessages(int numNewMessages) {
       Leds(pin_led, true);
       Relay(pin_relay, true);
       SLEEP = false;
-      TDELAY = 10000;
+      *TDELAY = 10000;
       if (SLEEP) {
         bot.sendMessage(chat_id, "system is sleep", "");
       } else {
@@ -66,7 +66,7 @@ void TelegramSetup() {
 }
 
 void Telegram() {
-  if (millis() > lastTimeBotRan + TDELAY) {
+  if (millis() > lastTimeBotRan + *TDELAY) {
     Serial.println("read telegram message");
     Leds(pin_led, false);
     int numNewMessages = bot.getUpdates(bot.last_message_received + 1);
