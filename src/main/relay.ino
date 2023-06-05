@@ -8,11 +8,11 @@ void Relay(int _pin, bool _status){
 
 void RelayStatus(int _pin, int _intensity, int _lightLimit, bool _relay, bool _bright, int _delay) {
   if (_intensity > _lightLimit) {
-    if (RELAYSTATUS) {
+    if (*RELAYSTATUS) {
       *RELAYWAIT = 0;
     }
   } else {
-    if (!RELAYSTATUS) {
+    if (!*RELAYSTATUS) {
       *RELAYWAIT = 0;
     }
   }
@@ -23,7 +23,7 @@ void RelayStatus(int _pin, int _intensity, int _lightLimit, bool _relay, bool _b
     }
   } else {
     *RELAYWAIT = 0;
-    RELAYSTATUS = _bright;
+    *RELAYSTATUS = _bright;
     Relay(_pin, _bright);
   }
 }

@@ -19,14 +19,17 @@ int
   minldr = 1024;   // max value for LDR by default
 
 bool
-  RELAYSTATUS,  // relay status (on or off)
-  SLEEP;        // sensor read status (on or off)
+  relay_status,  // relay status (on or off)
+  SLEEP;         // sensor read status (on or off)
 
 int
   *TDELAY = &tdelay,
   *RELAYWAIT = &relay_wait,
   *MAXLDR = &maxldr,
   *MINLDR = &minldr;
+
+bool
+  *RELAYSTATUS = &relay_status;
 
 void setup() {
   //Init Serial USB
@@ -44,7 +47,7 @@ void setup() {
   // set setup value
   Leds(pin_led, true);
   Relay(pin_relay, false);
-  RELAYSTATUS = false;
+  *RELAYSTATUS = false;
   SLEEP = false;
 }
 
@@ -69,10 +72,10 @@ void loop() {
         bright = Bright(intensity, lightLimit);
 
       // turn on or off relay
-      RelayStatus(pin_relay, intensity, lightLimit, RELAYSTATUS, bright, relay_delay);
+      RelayStatus(pin_relay, intensity, lightLimit, *RELAYSTATUS, bright, relay_delay);
 
       // print to serial monitor
-      PrintMonitor(intensity, *RELAYWAIT, *MAXLDR, *MINLDR, lightLimit, RELAYSTATUS);
+      PrintMonitor(intensity, *RELAYWAIT, *MAXLDR, *MINLDR, lightLimit, *RELAYSTATUS);
     }
 
     // if day, it's time to rest 😴
