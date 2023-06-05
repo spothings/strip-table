@@ -22,16 +22,6 @@ bool
   relay_status,  // relay status (on or off)
   sleep;         // sensor read status (on or off)
 
-int
-  *TDELAY = &tdelay,
-  *RELAYWAIT = &relay_wait,
-  *MAXLDR = &maxldr,
-  *MINLDR = &minldr;
-
-bool
-  *RELAYSTATUS = &relay_status,
-  *SLEEP = &sleep;
-
 void setup() {
   //Init Serial USB
   Serial.begin(115200);

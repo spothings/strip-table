@@ -17,7 +17,7 @@ void RelayStatus(int _pin, int _intensity, int _lightLimit, int _relay_delay, in
     }
   }
 
-  if (*RELAYWAIT < _relay_delay * 10) {
+  if (*_relay_wait < _relay_delay * 10) {
     if (*_relay_status != _bright) {
       *_relay_wait += 1;
     }
