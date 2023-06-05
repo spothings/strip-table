@@ -18,12 +18,12 @@ What does this device do? In simple terms, if it is night and there is enough li
 	- [x] Turn on and off the lights using relay
 	- [x] Use NTP client to get value day or night
 	- [x] Using the LDR sensor to get the light intensity
-	- [ ] Using average light intensity for stability sensor readings [`by default is off`](https://github.com/spothings/strip-table/pull/12)
+	- [x] Using average light intensity for stability sensor readings
 	- [x] Make auto sampling dark value
 - [Development](https://github.com/spothings/strip-table/tree/dev-code)
 	- [x] Using Telegram bot for remote control
+	- [x] Use pointer for function
 	- [ ] Using EEPROM to store data
-	- [ ] Use pointer for function
 	- [ ] Use Webserver
 
 ## Content
