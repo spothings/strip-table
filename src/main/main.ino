@@ -36,8 +36,8 @@ void setup() {
 
   // set pin mode (input or output)
   pinMode(PINLDR, INPUT);     // pin LDR
-  pinMode(PINRELAY, OUTPUT);  // pin Relay /lamp
   pinMode(PINLED, OUTPUT);    // pin LED
+  pinMode(PINRELAY, OUTPUT);  // pin Relay /lamp
 
   WifiSetup();      // setup WiFi
   NTPSetup();       // setup NTP time
@@ -67,23 +67,34 @@ void loop() {
 
 void Daily() {
 
+  // get night value
   night = GetTime();
 
   if (night) {
+    // set telegram delay to oftimize sensor scan
     tdelay = 10000;
+
+    // turn on relay for feadback
     Relay(PINRELAY, true);
+
+    // update max and min value in EEPROM
+    StorageWrite(ADDRMAX, maxldr);
+    StorageWrite(ADDRMIN, minldr);
+
+    // reset max and min temporary value
+    maxldr = 0;
+    minldr = 1024;
+
+    // get median value for parameter bright or dark
+    medldr = MedianLDR(ADDRMAX, ADDRMIN);
+
   } else {
+    // remove telegram delay for speed up bot response
     tdelay = 0;
+
+    // turn off relay for feadback
     Relay(PINRELAY, false);
   }
-
-  StorageWrite(ADDRMAX, maxldr);
-  StorageWrite(ADDRMIN, minldr);
-
-  maxldr = 0;
-  minldr = 1024;
-
-  medldr = MedianLDR(ADDRMAX, ADDRMIN);
 }
 
 void Night() {
