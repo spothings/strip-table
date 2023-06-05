@@ -26,6 +26,23 @@ What does this device do? In simple terms, if it is night and there is enough li
 	- [ ] Using EEPROM to store data
 	- [ ] Use Webserver
 
+### NodeMCU ESP8266 Specifications & Features
+- Microcontroller: Tensilica 32-bit RISC CPU Xtensa LX106
+- Operating Voltage: 3.3V
+- Input Voltage: 7-12V
+- Digital I/O Pins (DIO): 16
+- Analog Input Pins (ADC): 1
+- UARTs: 1
+- SPIs: 1
+- I2Cs: 1
+- Flash Memory: 4 MB
+- SRAM: 64 KB
+- Clock Speed: 80 MHz
+- EEPROM size: 4kB
+- USB-TTL based on CP2102 is included onboard, Enabling Plug n Play
+- PCB Antenna
+- Small Sized module to fit smartly inside your IoT projects
+
 ## Content
 - [Documentation](/doc)
 - [Project Workflow](/flow)
