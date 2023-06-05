@@ -20,10 +20,10 @@ What does this device do? In simple terms, if it is night and there is enough li
 	- [x] Using the LDR sensor to get the light intensity
 	- [x] Using average light intensity for stability sensor readings
 	- [x] Make auto sampling dark value
+	- [x] Use pointer for function
 - [Development](https://github.com/spothings/strip-table/tree/dev-code)
 	- [x] Using Telegram bot for remote control
-	- [x] Use pointer for function
-	- [ ] Using EEPROM to store data
+	- [x] Using EEPROM to store data
 	- [ ] Use Webserver
 
 ### NodeMCU ESP8266 Specifications & Features
