@@ -1,11 +1,10 @@
 #include <Arduino.h>
-#include <ESP8266WiFi.h>
-#include <WiFiClientSecure.h>
-#include <UniversalTelegramBot.h>
 #include <ArduinoJson.h>
-
-// Add root certificate for api.telegram.org
-X509List cert(TELEGRAM_CERTIFICATE_ROOT);
+#include <ESP8266WiFi.h>
+#include <WiFiUdp.h>
+#include <WiFiClientSecure.h>
+#include <NTPClient.h>
+#include <UniversalTelegramBot.h>
 
 const int
   pin_ldr = A0,           // pin LDR
@@ -14,40 +13,50 @@ const int
   relay_delay = 60;       // relay delay to turn on or off relay, in secon
 
 int
-  TDELAY = 10000,
-  RELAYWAIT = 0,  // increment value to wait condision
-  MAXLDR = 0,     // min value for LDR by default
-  MINLDR = 1024;  // max value for LDR by default
+  tdelay = 10000,  // set telegram delay value
+  relay_wait = 0,  // increment value to wait condision
+  maxldr = 0,      // min value for LDR by default
+  minldr = 1024;   // max value for LDR by default
 
 bool
-  RELAYSTATUS,  // relay status (on or off)
-  SLEEP;        // sensor read status (on or off)
+  relay_status,  // relay status (on or off)
+  night,         // variable for night status
+  sleep;         // sensor read status (on or off)
 
 void setup() {
+  //Init Serial USB
   Serial.begin(115200);
+
+  // set pin mode (input or output)
   pinMode(pin_ldr, INPUT);
   pinMode(pin_relay, OUTPUT);
   pinMode(pin_led, OUTPUT);
 
-  // setup Wifi
-  WifiSetup();
+  WifiSetup();      // setup WiFi
+  NTPSetup();       // setup NTP time
+  TelegramSetup();  // setup Telegram bot
 
-  // setup time ntp
-  setupNTP();
-
-  // setup telegram bot
-  TelegramSetup();
-
+  // set setup value
   Leds(pin_led, true);
   Relay(pin_relay, false);
-  RELAYSTATUS = false;
-  SLEEP = false;
+  relay_status = false;
+  night = true;
+  sleep = false;
 }
 
 void loop() {
-  if (!SLEEP) {
-    // get time (morning or night)
-    bool night = GetTime();
+  if (!sleep) {
+    // get time (day or night)
+    // if day, it's time to rest 😴
+    if (night != GetTime()) {
+      if (night) {
+        tdelay = 10000;
+      } else {
+        tdelay = 0;
+        Relay(pin_relay, false);
+      }
+      night = GetTime();
+    }
 
     // LDR sensor set only works at night
     if (night) {
@@ -56,25 +65,19 @@ void loop() {
         intensity = LdrAverage(pin_ldr),
 
         // set value for lightLimit with auto sampling
-        lightLimit = IntensityAverage(intensity, MAXLDR, MINLDR);
+        lightLimit = IntensityAverage(intensity, &maxldr, &minldr);
 
       bool
         // get bright value
         bright = Bright(intensity, lightLimit);
 
       // turn on or off relay
-      RelayStatus(pin_relay, intensity, lightLimit, RELAYSTATUS, bright, relay_delay);
+      RelayStatus(pin_relay, intensity, lightLimit, relay_delay, &relay_wait, &relay_status, bright);
 
       // print to serial monitor
-      PrintMonitor(intensity, RELAYWAIT, MAXLDR, MINLDR, lightLimit, RELAYSTATUS);
-    }
-
-    // if morning, it's time to rest 😴
-    else {
-      TDELAY = 0;
-      Relay(pin_relay, false);
+      PrintMonitor(intensity, relay_wait, maxldr, minldr, lightLimit, relay_status);
     }
   }
   // check message from telegram
-  Telegram();
+  Telegram(&tdelay, &sleep);
 }

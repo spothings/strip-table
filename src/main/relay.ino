@@ -6,24 +6,24 @@ void Relay(int _pin, bool _status){
   }
 }
 
-void RelayStatus(int _pin, int _intensity, int _lightLimit, bool _relay, bool _bright, int _delay) {
+void RelayStatus(int _pin, int _intensity, int _lightLimit, int _relay_delay, int* _relay_wait, bool* _relay_status, bool _bright) {
   if (_intensity > _lightLimit) {
-    if (RELAYSTATUS) {
-      RELAYWAIT = 0;
+    if (*_relay_status) {
+      *_relay_wait = 0;
     }
   } else {
-    if (!RELAYSTATUS) {
-      RELAYWAIT = 0;
+    if (!*_relay_status) {
+      *_relay_wait = 0;
     }
   }
 
-  if (RELAYWAIT < _delay * 10) {
-    if (_relay != _bright) {
-      RELAYWAIT++;
+  if (*_relay_wait < _relay_delay * 10) {
+    if (*_relay_status != _bright) {
+      *_relay_wait += 1;
     }
   } else {
-    RELAYWAIT = 0;
-    RELAYSTATUS = _bright;
+    *_relay_wait = 0;
+    *_relay_status = _bright;
     Relay(_pin, _bright);
   }
 }

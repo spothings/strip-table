@@ -22,3 +22,4 @@
 - [ESP8266 NodeMCU Digital Inputs and Digital Outputs (Arduino IDE) | Random Nerd Tutorials](https://randomnerdtutorials.com/esp8266-nodemcu-digital-inputs-outputs-arduino/)
 - [ESP8266 Using PWM With Potentiometer : 4 Steps - Instructables](https://www.instructables.com/ESP8266-Using-PWM-With-Potentiometer/)
 - [Telegram: Control ESP32/ESP8266 Outputs with Arduino IDE | Random Nerd Tutorials](https://randomnerdtutorials.com/telegram-control-esp32-esp8266-nodemcu-outputs/)
+- [Using the EEPROM with the ESP8266 • AranaCorp](https://www.aranacorp.com/en/using-the-eeprom-with-the-esp8266/)
