@@ -14,7 +14,7 @@ const int
 
 int
   tdelay = 10000,  // set telegram delay value
-  RELAYWAIT = 0,   // increment value to wait condision
+  relay_wait = 0,  // increment value to wait condision
   MAXLDR = 0,      // min value for LDR by default
   MINLDR = 1024;   // max value for LDR by default
 
@@ -22,8 +22,9 @@ bool
   RELAYSTATUS,  // relay status (on or off)
   SLEEP;        // sensor read status (on or off)
 
-int*
-  TDELAY = &tdelay;
+int
+  *TDELAY = &tdelay,
+  *RELAYWAIT = &relay_wait;
 
 void setup() {
   //Init Serial USB
@@ -48,7 +49,7 @@ void setup() {
 void loop() {
   if (!SLEEP) {
     // get time (day or night)
-    bool night = true;//GetTime();
+    bool night = true;  //GetTime();
 
     // LDR sensor set only works at night
     if (night) {
@@ -69,7 +70,7 @@ void loop() {
       RelayStatus(pin_relay, intensity, lightLimit, RELAYSTATUS, bright, relay_delay);
 
       // print to serial monitor
-      PrintMonitor(intensity, RELAYWAIT, MAXLDR, MINLDR, lightLimit, RELAYSTATUS);
+      PrintMonitor(intensity, *RELAYWAIT, MAXLDR, MINLDR, lightLimit, RELAYSTATUS);
     }
 
     // if day, it's time to rest 😴

@@ -24,5 +24,7 @@ void PrintMonitor(int _potencia, int _waiting, int _maxldr, int _minldr, int _li
     Serial.print("Off");
   }
   
+  Serial.print("\t");
+  Serial.print((uintptr_t)RELAYWAIT, HEX);
   Serial.print("\n");
 }
