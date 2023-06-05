@@ -20,8 +20,8 @@ int
 
 bool
   relay_status,  // relay status (on or off)
-  night,
-  sleep;  // sensor read status (on or off)
+  night,         // variable for night status
+  sleep;         // sensor read status (on or off)
 
 void setup() {
   //Init Serial USB
@@ -47,6 +47,7 @@ void setup() {
 void loop() {
   if (!sleep) {
     // get time (day or night)
+    // if day, it's time to rest 😴
     if (night != GetTime()) {
       if (night) {
         tdelay = 10000;
@@ -76,7 +77,6 @@ void loop() {
       // print to serial monitor
       PrintMonitor(intensity, relay_wait, maxldr, minldr, lightLimit, relay_status);
     }
-    // if day, it's time to rest 😴
   }
   // check message from telegram
   Telegram(&tdelay, &sleep);
