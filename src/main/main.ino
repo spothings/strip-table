@@ -73,7 +73,7 @@ void loop() {
         bright = Bright(intensity, lightLimit);
 
       // turn on or off relay
-      RelayStatus(pin_relay, intensity, lightLimit, relay_delay, &relay_status, bright);
+      RelayStatus(pin_relay, intensity, lightLimit, relay_delay, &relay_wait, &relay_status, bright);
 
       // print to serial monitor
       PrintMonitor(intensity, relay_wait, maxldr, minldr, lightLimit, relay_status);
