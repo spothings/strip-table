@@ -20,7 +20,7 @@ int
 
 bool
   relay_status,  // relay status (on or off)
-  SLEEP;         // sensor read status (on or off)
+  sleep;         // sensor read status (on or off)
 
 int
   *TDELAY = &tdelay,
@@ -29,7 +29,8 @@ int
   *MINLDR = &minldr;
 
 bool
-  *RELAYSTATUS = &relay_status;
+  *RELAYSTATUS = &relay_status,
+  *SLEEP = &sleep;
 
 void setup() {
   //Init Serial USB
@@ -48,11 +49,11 @@ void setup() {
   Leds(pin_led, true);
   Relay(pin_relay, false);
   *RELAYSTATUS = false;
-  SLEEP = false;
+  *SLEEP = false;
 }
 
 void loop() {
-  if (!SLEEP) {
+  if (!*SLEEP) {
     // get time (day or night)
     bool night = true;  //GetTime();
 

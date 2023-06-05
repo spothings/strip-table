@@ -27,7 +27,7 @@ void handleNewMessages(int numNewMessages) {
     String from_name = bot.messages[i].from_name;
 
     if (text == "/status") {
-      if (SLEEP) {
+      if (*SLEEP) {
         bot.sendMessage(chat_id, "system is sleep", "");
       } else {
         bot.sendMessage(chat_id, "system is wakeup", "");
@@ -37,9 +37,9 @@ void handleNewMessages(int numNewMessages) {
     if (text == "/sleep") {
       Leds(pin_led, false);
       Relay(pin_relay, false);
-      SLEEP = true;
+      *SLEEP = true;
       *TDELAY = 0;
-      if (SLEEP) {
+      if (*SLEEP) {
         bot.sendMessage(chat_id, "system is sleep", "");
       } else {
         bot.sendMessage(chat_id, "system is wakeup", "");
@@ -49,9 +49,9 @@ void handleNewMessages(int numNewMessages) {
     if (text == "/wakeup") {
       Leds(pin_led, true);
       Relay(pin_relay, true);
-      SLEEP = false;
+      *SLEEP = false;
       *TDELAY = 10000;
-      if (SLEEP) {
+      if (*SLEEP) {
         bot.sendMessage(chat_id, "system is sleep", "");
       } else {
         bot.sendMessage(chat_id, "system is wakeup", "");
