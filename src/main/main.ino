@@ -1,16 +1,15 @@
-#include <Arduino.h>
-#include <ArduinoJson.h>
-#include <ESP8266WiFi.h>
-#include <WiFiUdp.h>
-#include <WiFiClientSecure.h>
-#include <NTPClient.h>
-#include <UniversalTelegramBot.h>
+#include <ESP8266WiFi.h>           // for connect to WiFi
+#include <WiFiUdp.h>               // for use UDP protocol NTP client
+#include <NTPClient.h>             // for use NTP Client
+#include <UniversalTelegramBot.h>  // for use Telegram bot
+#include <ArduinoJson.h>           // Telegram bot requeretment
+#include <EEPROM.h>                // for use EEPROM storage
 
 const int
-  pin_ldr = A0,           // pin LDR
-  pin_relay = 16,         // pin relay
-  pin_led = LED_BUILTIN,  // pin LED
-  relay_delay = 60;       // relay delay to turn on or off relay, in secon
+  PINLDR = A0,           // pin LDR sensor
+  PINRELAY = 16,         // pin relay / lamp
+  PINLED = LED_BUILTIN,  // pin LED (built in led)
+  RELAYDELAY = 60;       // relay delay to turn on or off relay, in secon
 
 int
   tdelay = 10000,  // set telegram delay value
@@ -28,17 +27,17 @@ void setup() {
   Serial.begin(115200);
 
   // set pin mode (input or output)
-  pinMode(pin_ldr, INPUT);
-  pinMode(pin_relay, OUTPUT);
-  pinMode(pin_led, OUTPUT);
+  pinMode(PINLDR, INPUT);
+  pinMode(PINRELAY, OUTPUT);
+  pinMode(PINLED, OUTPUT);
 
   WifiSetup();      // setup WiFi
   NTPSetup();       // setup NTP time
   TelegramSetup();  // setup Telegram bot
 
   // set setup value
-  Leds(pin_led, true);
-  Relay(pin_relay, false);
+  Leds(PINLED, true);
+  Relay(PINRELAY, false);
   relay_status = false;
   night = true;
   sleep = false;
@@ -53,7 +52,7 @@ void loop() {
         tdelay = 10000;
       } else {
         tdelay = 0;
-        Relay(pin_relay, false);
+        Relay(PINRELAY, false);
       }
       night = GetTime();
     }
@@ -62,7 +61,7 @@ void loop() {
     if (night) {
       int
         // get LDR value with average
-        intensity = LdrAverage(pin_ldr),
+        intensity = LdrAverage(PINLDR),
 
         // set value for lightLimit with auto sampling
         lightLimit = IntensityAverage(intensity, &maxldr, &minldr);
@@ -72,12 +71,12 @@ void loop() {
         bright = Bright(intensity, lightLimit);
 
       // turn on or off relay
-      RelayStatus(pin_relay, intensity, lightLimit, relay_delay, &relay_wait, &relay_status, bright);
+      RelayStatus(PINRELAY, intensity, lightLimit, RELAYDELAY, &relay_wait, &relay_status, bright);
 
       // print to serial monitor
       PrintMonitor(intensity, relay_wait, maxldr, minldr, lightLimit, relay_status);
     }
   }
   // check message from telegram
-  Telegram(&tdelay, &sleep);
+  Telegram(PINLED, PINRELAY, &tdelay, &sleep);
 }

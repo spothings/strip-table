@@ -8,7 +8,7 @@ X509List cert(TELEGRAM_CERTIFICATE_ROOT);
 unsigned long lastTimeBotRan;
 
 // Handle what happens when you receive new messages
-void handleNewMessages(int numNewMessages, int* _tdelay, bool* _sleep) {
+void handleNewMessages(int numNewMessages, int _led, int _relay, int* _tdelay, bool* _sleep) {
   Serial.println("handleNewMessages");
   Serial.println(String(numNewMessages));
 
@@ -35,8 +35,8 @@ void handleNewMessages(int numNewMessages, int* _tdelay, bool* _sleep) {
     }
 
     if (text == "/sleep") {
-      Leds(pin_led, false);
-      Relay(pin_relay, false);
+      Leds(_led, false);
+      Relay(_relay, false);
       *_sleep = true;
       *_tdelay = 0;
       if (*_sleep) {
@@ -47,8 +47,8 @@ void handleNewMessages(int numNewMessages, int* _tdelay, bool* _sleep) {
     }
 
     if (text == "/wakeup") {
-      Leds(pin_led, true);
-      Relay(pin_relay, true);
+      Leds(_led, true);
+      Relay(_relay, true);
       *_sleep = false;
       *_tdelay = 10000;
       if (*_sleep) {
@@ -65,18 +65,18 @@ void TelegramSetup() {
   client.setTrustAnchors(&cert);     // Add root certificate for api.telegram.org
 }
 
-void Telegram(int* _tdelay, bool* _sleep) {
+void Telegram(int _led, int _relay, int* _tdelay, bool* _sleep) {
   if (millis() > lastTimeBotRan + *_tdelay) {
     Serial.println("read telegram message");
-    Leds(pin_led, false);
+    Leds(_led, false);
     int numNewMessages = bot.getUpdates(bot.last_message_received + 1);
 
     while (numNewMessages) {
       Serial.println("got response");
-      handleNewMessages(numNewMessages, _tdelay, _sleep);
+      handleNewMessages(numNewMessages, _led, _relay, _tdelay, _sleep);
       numNewMessages = bot.getUpdates(bot.last_message_received + 1);
     }
     lastTimeBotRan = millis();
   }
-  Leds(pin_led, true);
+  Leds(_led, true);
 }
