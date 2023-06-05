@@ -48,40 +48,40 @@ void setup() {
   // set setup value
   Leds(pin_led, true);
   Relay(pin_relay, false);
-  *RELAYSTATUS = false;
-  *SLEEP = false;
+  relay_status = false;
+  sleep = false;
 }
 
 void loop() {
-  if (!*SLEEP) {
+  if (!sleep) {
     // get time (day or night)
     bool night = true;  //GetTime();
 
     // LDR sensor set only works at night
     if (night) {
-      *TDELAY = 10000;
+      tdelay = 10000;
 
       int
         // get LDR value with average
         intensity = LdrAverage(pin_ldr),
 
         // set value for lightLimit with auto sampling
-        lightLimit = IntensityAverage(intensity, *MAXLDR, *MINLDR);
+        lightLimit = IntensityAverage(intensity, maxldr, minldr);
 
       bool
         // get bright value
         bright = Bright(intensity, lightLimit);
 
       // turn on or off relay
-      RelayStatus(pin_relay, intensity, lightLimit, *RELAYSTATUS, bright, relay_delay);
+      RelayStatus(pin_relay, intensity, lightLimit, relay_status, bright, relay_delay);
 
       // print to serial monitor
-      PrintMonitor(intensity, *RELAYWAIT, *MAXLDR, *MINLDR, lightLimit, *RELAYSTATUS);
+      PrintMonitor(intensity, relay_wait, maxldr, minldr, lightLimit, relay_status);
     }
 
     // if day, it's time to rest 😴
     else {
-      *TDELAY = 0;
+      tdelay = 0;
       Relay(pin_relay, false);
     }
   }
