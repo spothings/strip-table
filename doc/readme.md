@@ -24,3 +24,4 @@
 - [Telegram: Control ESP32/ESP8266 Outputs with Arduino IDE | Random Nerd Tutorials](https://randomnerdtutorials.com/telegram-control-esp32-esp8266-nodemcu-outputs/)
 - [Using the EEPROM with the ESP8266 • AranaCorp](https://www.aranacorp.com/en/using-the-eeprom-with-the-esp8266/)
 - [NodeMCU ESP8266 Pinout, Specifications, Features & Datasheet (components101.com)](https://components101.com/development-boards/nodemcu-esp8266-pinout-features-and-datasheet)
+- [Libraries — ESP8266 Arduino Core 3.1.2-11-g57fa6cdc documentation (arduino-esp8266.readthedocs.io)](https://arduino-esp8266.readthedocs.io/en/latest/libraries.html)
