@@ -16,7 +16,7 @@ int LdrAverage(int _pin){
 
 int MaxLdr(int _new, int _old){
   if (_new > _old){
-    MAXLDR = _new;
+    *MAXLDR = _new;
     return _new;
   } else {
     return _old;
@@ -25,7 +25,7 @@ int MaxLdr(int _new, int _old){
 
 int MinLdr(int _new, int _old){
   if (_new < _old){
-    MINLDR = _new;
+    *MINLDR = _new;
     return _new;
   } else {
     return _old;

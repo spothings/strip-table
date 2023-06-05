@@ -15,8 +15,8 @@ const int
 int
   tdelay = 10000,  // set telegram delay value
   relay_wait = 0,  // increment value to wait condision
-  MAXLDR = 0,      // min value for LDR by default
-  MINLDR = 1024;   // max value for LDR by default
+  maxldr = 0,      // min value for LDR by default
+  minldr = 1024;   // max value for LDR by default
 
 bool
   RELAYSTATUS,  // relay status (on or off)
@@ -24,7 +24,9 @@ bool
 
 int
   *TDELAY = &tdelay,
-  *RELAYWAIT = &relay_wait;
+  *RELAYWAIT = &relay_wait,
+  *MAXLDR = &maxldr,
+  *MINLDR = &minldr;
 
 void setup() {
   //Init Serial USB
@@ -60,7 +62,7 @@ void loop() {
         intensity = LdrAverage(pin_ldr),
 
         // set value for lightLimit with auto sampling
-        lightLimit = IntensityAverage(intensity, MAXLDR, MINLDR);
+        lightLimit = IntensityAverage(intensity, *MAXLDR, *MINLDR);
 
       bool
         // get bright value
@@ -70,7 +72,7 @@ void loop() {
       RelayStatus(pin_relay, intensity, lightLimit, RELAYSTATUS, bright, relay_delay);
 
       // print to serial monitor
-      PrintMonitor(intensity, *RELAYWAIT, MAXLDR, MINLDR, lightLimit, RELAYSTATUS);
+      PrintMonitor(intensity, *RELAYWAIT, *MAXLDR, *MINLDR, lightLimit, RELAYSTATUS);
     }
 
     // if day, it's time to rest 😴
