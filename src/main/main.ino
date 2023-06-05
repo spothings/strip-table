@@ -66,7 +66,7 @@ void loop() {
         intensity = LdrAverage(pin_ldr),
 
         // set value for lightLimit with auto sampling
-        lightLimit = IntensityAverage(intensity, maxldr, minldr);
+        lightLimit = IntensityAverage(intensity, &maxldr, &minldr);
 
       bool
         // get bright value
