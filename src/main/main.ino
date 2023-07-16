@@ -1,15 +1,16 @@
-#include <Arduino.h>
+// #include <Arduino.h>
 #include <ArduinoJson.h>
-#include <ESP8266WiFi.h>
+#include <WiFi.h>
+// #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
 #include <WiFiClientSecure.h>
 #include <NTPClient.h>
 #include <UniversalTelegramBot.h>
 
 const int
-  pin_ldr = A0,           // pin LDR
-  pin_relay = 16,         // pin relay
-  pin_led = LED_BUILTIN,  // pin LED
+  pin_ldr = 34,           // pin LDR
+  pin_relay = 4,         // pin relay
+  pin_led = 0,  // pin LED
   relay_delay = 60;       // relay delay to turn on or off relay, in secon
 
 int
@@ -21,7 +22,7 @@ int
 bool
   relay_status,  // relay status (on or off)
   night,         // variable for night status
-  sleep;         // sensor read status (on or off)
+  sensor_sleep;         // sensor read status (on or off)
 
 void setup() {
   //Init Serial USB
@@ -30,22 +31,22 @@ void setup() {
   // set pin mode (input or output)
   pinMode(pin_ldr, INPUT);
   pinMode(pin_relay, OUTPUT);
-  pinMode(pin_led, OUTPUT);
+  // pinMode(pin_led, OUTPUT);
 
   WifiSetup();      // setup WiFi
   NTPSetup();       // setup NTP time
-  TelegramSetup();  // setup Telegram bot
+  // TelegramSetup();  // setup Telegram bot
 
   // set setup value
-  Leds(pin_led, true);
+  // Leds(pin_led, true);
   Relay(pin_relay, false);
   relay_status = false;
   night = true;
-  sleep = false;
+  sensor_sleep = false;
 }
 
 void loop() {
-  if (!sleep) {
+  if (!sensor_sleep) {
     // get time (day or night)
     // if day, it's time to rest 😴
     if (night != GetTime()) {
@@ -75,9 +76,9 @@ void loop() {
       RelayStatus(pin_relay, intensity, lightLimit, relay_delay, &relay_wait, &relay_status, bright);
 
       // print to serial monitor
-      PrintMonitor(intensity, relay_wait, maxldr, minldr, lightLimit, relay_status);
+      // PrintMonitor(intensity, relay_wait, maxldr, minldr, lightLimit, relay_status);
     }
   }
   // check message from telegram
-  Telegram(&tdelay, &sleep);
+  // Telegram(&tdelay, &sensor_sleep);
 }
